@@ -51,5 +51,38 @@ class device{
 
         return $stmt;
     }
+
+    // create product
+    function create(){
+    
+        // query to insert record
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                    device_id=:device_id, building_id=:building_id, x_position=:x_position, y_position=:y_position";
+    
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $this->device_id=htmlspecialchars(strip_tags($this->device_id));
+        $this->building_id=htmlspecialchars(strip_tags($this->building_id));
+        $this->x_position=htmlspecialchars(strip_tags($this->x_position));
+        $this->y_position=htmlspecialchars(strip_tags($this->y_position));
+    
+        // bind values
+        $stmt->bindParam(":device_id", $this->device_id);
+        $stmt->bindParam(":building_id", $this->building_id);
+        $stmt->bindParam(":x_position", $this->x_position);
+        $stmt->bindParam(":y_position", $this->y_position);
+    
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+        
+    }
 }
 ?>
