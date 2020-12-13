@@ -20,7 +20,7 @@ class building{
         // select all query
         $query = "SELECT *
                 FROM
-                    " . $this->table_name ;
+                    " . $this->table_name;
     
         // prepare query statement
         $stmt = $this->conn->prepare($query);
@@ -28,6 +28,25 @@ class building{
         // execute query
         $stmt->execute();
     
+        return $stmt;
+    }
+
+    // used when filling up the update product form
+    function readOne($b_id){
+        
+        // query to read single record
+        $query = "SELECT *
+                FROM
+                    " . $this->table_name . " b
+                WHERE
+                    b.building_id =". $b_id;
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        // execute query
+        $stmt->execute();
+
         return $stmt;
     }
 }

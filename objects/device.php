@@ -32,5 +32,24 @@ class device{
     
         return $stmt;
     }
+
+    // used when filling up the update product form
+    function readOne($d_id){
+        
+        // query to read single record
+        $query = "SELECT *
+                FROM
+                    " . $this->table_name . " d
+                WHERE
+                    d.device_id =". $d_id;
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
 ?>

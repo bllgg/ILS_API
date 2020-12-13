@@ -32,5 +32,23 @@ class esp{
     
         return $stmt;
     }
+    // used when filling up the update product form
+    function readOne($e_id){
+        
+        // query to read single record
+        $query = "SELECT *
+                FROM
+                    " . $this->table_name . " e
+                WHERE
+                    e.esp_device =". $e_id;
+    
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+    
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
 ?>
