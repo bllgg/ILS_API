@@ -49,5 +49,34 @@ class building{
 
         return $stmt;
     }
+
+    // create product
+    function create(){
+    
+        // query to insert record
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                    building_id=:building_id, map_reference=:map_reference";
+    
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $this->building_id=htmlspecialchars(strip_tags($this->building_id));
+        $this->map_reference=htmlspecialchars(strip_tags($this->map_reference));
+    
+        // bind values
+        $stmt->bindParam(":building_id", $this->building_id);
+        $stmt->bindParam(":map_reference", $this->map_reference);
+    
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+        
+    }
 }
 ?>
