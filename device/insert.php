@@ -25,7 +25,8 @@ if(
     !empty($data->device_id) &&
     !empty($data->building_id) &&
     !empty($data->x_position) &&
-    !empty($data->y_position)
+    !empty($data->y_position) &&
+    !empty($data->variance)
 ){
  
     // set product property values
@@ -33,6 +34,7 @@ if(
     $Device->building_id = $data->building_id;
     $Device->x_position = $data->x_position;
     $Device->y_position = $data->y_position;
+    $Device->variance = $data->variance;
  
     // create the product
     if($Device->create()){

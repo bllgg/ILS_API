@@ -10,6 +10,7 @@ class device{
     public $device_id;
     public $x_position;
     public $y_position;
+    public $variance;
  
     // constructor with $db as database connection
     public function __construct($db){
@@ -69,12 +70,14 @@ class device{
         $this->building_id=htmlspecialchars(strip_tags($this->building_id));
         $this->x_position=htmlspecialchars(strip_tags($this->x_position));
         $this->y_position=htmlspecialchars(strip_tags($this->y_position));
+        $this->variance=htmlspecialchars(strip_tags($this->variance));
     
         // bind values
         $stmt->bindParam(":device_id", $this->device_id);
         $stmt->bindParam(":building_id", $this->building_id);
         $stmt->bindParam(":x_position", $this->x_position);
         $stmt->bindParam(":y_position", $this->y_position);
+        $stmt->bindParam(":variance", $this->variance);
     
         // execute query
         if($stmt->execute()){

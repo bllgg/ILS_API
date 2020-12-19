@@ -42,7 +42,8 @@ if($num>0){
             "device_id" => $device_id,
             "building_id" => $building_id,
             "x_position" => $x_position,
-            "y_position" => $y_position
+            "y_position" => $y_position,
+            "variance" => $variance
         );
  
         array_push($Devices_arr["records"], $Device_item);
